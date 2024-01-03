@@ -11,6 +11,7 @@ def ConvertPointFromCartesianToCylindrical():
     print('\u03C1 = {0:.2f}'.format(Cylindrical_rho))
     print('\u03C6 = {0:.2f}'.format(Cylindrical_phi))
     print('z = {0:.2f}'.format(cartesian_z))
+    
 
 def ConvertPointFromCylindricalToCartesian():
     Cylindrical_rho = float(input("Enter \u03C1 value: "))
@@ -35,11 +36,49 @@ def ConvertVectorFromCartesianToCylindrical():
     print('A\u03C6 = {0:.2f}'.format(vectorOnCylindrical.item(1)))
     print('Az = {0:.2f}'.format(vectorOnCylindrical.item(2)))
 
-def main():
-    #ConvertPointFromCartesianToCylindrical()
-    #ConvertPointFromCylindricalToCartesian()
-    ConvertVectorFromCartesianToCylindrical()
+def ConvertVectorFromCylindricalToCartesian():
+    cylindrical_Ap = float(input("Enter Cylindrical (A\u03C1) value: "))
+    cylindrical_Ao = float(input("Enter Cylindrical (A\u03C6) value: "))
+    clyindrical_Az = float(input("Enter Cylindrical (Az) value: "))
+    phiRad = math.atan(cylindrical_Ao / cylindrical_Ap)
+    convertingMatrix = np.matrix([[math.cos(phiRad), -math.sin(phiRad), 0], [math.sin(phiRad),math.cos(phiRad),0],[0, 0,1]])
+    CylindricalMatrix = np.matrix([[cylindrical_Ap], [cylindrical_Ao], [clyindrical_Az]])
+    vectorOnCartesian = np.matmul(convertingMatrix, CylindricalMatrix)
+    print('Ax = {0:.2f}'.format(vectorOnCartesian.item(0)))
+    print('Ay = {0:.2f}'.format(vectorOnCartesian.item(1)))
+    print('Az = {0:.2f}'.format(vectorOnCartesian.item(2)))
+    
+def promptForNewValues():
+    user_input = input("\nDo you want to enter new values? (yes/no): ").lower()
+    if user_input != 'yes':
+        return False
+    else:
+        main()
+        return True
 
+def main():
+    while True:
+        x = int(input("What do you want to Convert \nPoint\n 1.Cartesian to Cylindrical \n 2.Cylindrical to Cartesian\nVectors\n 3.Cartesian to Cylindrical\n 4.Cylindrical to Cartesian\n"))
+        if (x == 1):
+            ConvertPointFromCartesianToCylindrical()
+            if not promptForNewValues():
+                break
+        elif (x == 2):
+            ConvertPointFromCylindricalToCartesian()
+            if not promptForNewValues():
+                break
+        elif (x == 3):
+            ConvertVectorFromCartesianToCylindrical()
+            if not promptForNewValues():
+                break
+        elif (x == 4):
+            ConvertVectorFromCylindricalToCartesian()
+            if not promptForNewValues():
+                break
+        else:
+            print("you enterd a wrong vlaue")
+        if not promptForNewValues():
+            break
 if __name__ == "__main__":
     main()
 
