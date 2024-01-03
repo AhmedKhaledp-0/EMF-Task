@@ -42,3 +42,14 @@ Aρ = 4.47
 Aφ = 0.00
 Az = 1.00
 ```
+
+### Convert a vector from cartesian  to cylindrical
+
+```text
+Enter Cylindrical (Aρ) value: 5
+Enter Cylindrical (Aφ) value: 225
+Enter Cylindrical (Az) value: 0
+Ax = -224.83
+Ay = 10.00
+Az = 0.00
+```
