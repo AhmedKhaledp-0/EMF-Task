@@ -20,3 +20,14 @@ Enter Cartesian (Z) value: 5
 φ = 53.13
 z = 5.00
 ```
+
+### Convert a point from cylindrical to cartesian
+
+```python
+Enter ρ value: 5
+Enter φ value: 53.13
+Enter z value: 5
+x = 3.00
+y = 4.00
+z = 5.00
+```
